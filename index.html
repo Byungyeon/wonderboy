@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Wonder Boy in Monster Land</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 100vh;
+      font-family: sans-serif;
+      color: #ccc;
+      overflow-x: hidden;
+    }
+
+    #header {
+      width: 100%;
+      max-width: 760px;
+      padding: 10px 16px 6px;
+      text-align: center;
+    }
+    #header h1 {
+      font-size: 15px;
+      font-weight: bold;
+      color: #f4c430;
+      letter-spacing: 0.5px;
+    }
+
+    #game-wrapper {
+      width: 100%;
+      max-width: 760px;
+      position: relative;
+    }
+
+    /* EmulatorJS가 생성하는 캔버스/컨테이너에 반응형 적용 */
+    #game {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      display: block;
+    }
+
+    #keymap {
+      width: 100%;
+      max-width: 760px;
+      padding: 12px 16px;
+      font-size: 12px;
+      color: #888;
+      line-height: 1.8;
+    }
+    #keymap strong { color: #aaa; }
+
+    /* 모바일에서 키맵 숨기기 */
+    @media (max-width: 640px) {
+      #keymap { display: none; }
+      #header h1 { font-size: 13px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="header">
+    <h1>Wonder Boy in Monster Land</h1>
+  </div>
+
+  <div id="game-wrapper">
+    <div id="game"></div>
+  </div>
+
+  <div id="keymap">
+    <strong>PC 키보드:</strong>
+    방향키 이동 &nbsp;|&nbsp;
+    <strong>Z</strong> 점프 &nbsp;|&nbsp;
+    <strong>X</strong> 공격 &nbsp;|&nbsp;
+    <strong>5</strong> 코인 투입 &nbsp;|&nbsp;
+    <strong>1</strong> 1P 스타트 &nbsp;|&nbsp;
+    <strong>Enter</strong> 선택/확인
+    &nbsp;&nbsp;—&nbsp;&nbsp;
+    우측 하단 메뉴(≡)에서 키 재설정 가능
+  </div>
+
+  <script>
+    // ── EmulatorJS 설정 ───────────────────────────────────────
+    EJS_player        = '#game';
+    EJS_core          = 'fbneo';
+    EJS_gameUrl       = './wbmlb.zip';
+    EJS_pathtodata    = 'https://cdn.emulatorjs.org/stable/data/';
+
+    // 기본 키 매핑 (FBNeo / MAME 기준)
+    EJS_defaultOptions = {
+      'save-state-slot': 1,
+      'rewind-enabled':  false,
+    };
+
+    // 모바일 최적화 (가상패드 자동 활성화)
+    EJS_mobileOptimized = true;
+
+    // 화면 비율 4:3 고정
+    EJS_aspectRatio = '4/3';
+  </script>
+  <script src="https://cdn.emulatorjs.org/stable/data/loader.js"></script>
+
+</body>
+</html>
